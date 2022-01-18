@@ -1,0 +1,64 @@
+
+<div>
+    <button (click)="addTask()">Add Task</button>
+    <button (click)="compteRendu()">Compte rendu</button>
+</div>
+
+<!--jai pas reussi a les detacher les uns des autres...-->
+
+<div class="task" *ngFor="let task of taskList; let i = index">
+
+    <span>
+        <div class="title">Task number : {{ i + 1}}</div>
+    </span>
+    <span class="remove">
+        <button (click)="removeTask(i)">X</button>
+    </span>
+
+
+
+    <button (click)="toDo()">Switch</button>
+    <button [disabled]="isDo">A faire</button>
+
+    <div>
+        <span class="title"></span>
+        
+        <div [hidden]= "isHidden">Title : 
+            <input [(ngModel)]="task.title" type="text">
+        </div>
+        <div [hidden]= "!isHidden">
+            Title : 
+            <span class="text">{{task.title}}</span>
+        </div>
+    </div>
+
+
+    <div>
+        <span class="description"></span>
+        
+        <div [hidden]= "isHidden">Description : 
+            <input [(ngModel)]="task.description" type="text">
+        </div>
+        <div [hidden]= "!isHidden">
+            Description : 
+            <span class="text">{{task.description}}</span>
+        </div>
+    </div>
+
+
+    <div>
+        <button [hidden]= "!isHidden" (click)="switchIsHidden()" >Modify</button>
+        <button [hidden]= "isHidden" (click)="switchIsHidden()">Save Task</button>
+    </div>
+
+</div>
+
+<!--jai pas reussi a ne pas l'afficher tant que la tache etait a faire...-->
+
+<span *ngFor="let task of taskList">
+    <p>Compte rendu:</p>
+    <div class="text">{{task.title}}</div>
+</span>
+
+
+
